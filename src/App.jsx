@@ -5,7 +5,13 @@ import { formatMoney, calculateTotalPay } from "./helpers";
 function App() {
   const [qty, setQty] = useState(10000);
   const [months, setMonths] = useState(6);
-  const [total, setTotal] = useState(calculateTotalPay(qty,months));
+  const [total, setTotal] = useState(0);
+
+  useEffect(()=>{
+    const resultTotalPay = calculateTotalPay(qty,months);
+    setTotal(resultTotalPay);
+  },[qty, months]);
+
   const MIN = 0;
   const MAX = 20000;
   const STEP = 100;
